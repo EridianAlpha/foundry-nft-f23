@@ -12,12 +12,14 @@ contract BasicNft is ERC721 {
         s_tokenCounter = 0;
     }
 
+    // Needs to be an override to set the custom token URI
     function mintNft(string memory tokenUri) public {
         s_tokenIdToUri[s_tokenCounter] = tokenUri;
         _safeMint(msg.sender, s_tokenCounter);
         s_tokenCounter++;
     }
 
+    // Needs to be an override as this contract uses a custom mapping for the token URI
     function tokenURI(
         uint256 tokenId
     ) public view override returns (string memory) {

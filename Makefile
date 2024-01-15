@@ -55,7 +55,7 @@ install:
 	forge install Cyfrin/foundry-devops@0.0.11 --no-commit && \
 	forge install openzeppelin/openzeppelin-contracts@v4.8.3 --no-commit
 
-deploy:
+deploy-basicNft:
 	@forge script script/DeployBasicNft.s.sol:DeployBasicNft $(NETWORK_ARGS) -vvvv
 
 mint-basicNft: 
@@ -67,9 +67,9 @@ return-basicNftUri:
 # ================================================================
 # │                         RUN COMMANDS                         │
 # ================================================================
-deploy-anvil: anvil-network deploy
-deploy-holesky: holesky-network deploy
-# deploy-mainnet: mainnet-network deploy
+deploy-anvil-basicNft: anvil-network deploy-basicNft
+deploy-holesky-basicNft: holesky-network deploy-basicNft
+# deploy-mainnet-basicNft: mainnet-network deploy-basicNft
 
 anvil-mint-basicNft: anvil-network mint-basicNft
 holesky-mint-basicNft: holesky-network mint-basicNft
