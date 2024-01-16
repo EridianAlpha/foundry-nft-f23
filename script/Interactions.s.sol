@@ -5,6 +5,7 @@ pragma solidity ^0.8.18;
 import {Script, console} from "forge-std/Script.sol";
 import {DevOpsTools} from "./HelperFunctions.s.sol";
 import {BasicNft} from "../src/BasicNft.sol";
+import {MoodNft} from "../src/MoodNft.sol";
 import {Base64} from "@openzeppelin/contracts/utils/Base64.sol";
 
 contract MintBasicNft is Script, DevOpsTools {
@@ -44,5 +45,31 @@ contract ReturnBasicNftUri is Script, DevOpsTools {
         console.log("");
         console.log("NFT URI:\n", nftUri);
         console.log("");
+    }
+}
+
+contract MintMoodNft is Script, DevOpsTools {
+    function run() public {
+        address mostRecentDeployed = get_most_recent_deployment(
+            "MoodNft",
+            block.chainid
+        );
+
+        vm.startBroadcast();
+        MoodNft(mostRecentDeployed).mintNft();
+        vm.stopBroadcast();
+    }
+}
+
+contract FlipMoodNft is Script, DevOpsTools {
+    function run() public {
+        address mostRecentDeployed = get_most_recent_deployment(
+            "MoodNft",
+            block.chainid
+        );
+
+        vm.startBroadcast();
+        MoodNft(mostRecentDeployed).flipMood(0);
+        vm.stopBroadcast();
     }
 }
