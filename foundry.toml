@@ -9,7 +9,7 @@ remappings = [
 
 # Allow foundry to run commands on the command line
 ffi = true 
-fs_permissions = [{ access = "read", path = "./broadcast" }]
+fs_permissions = [{ access = "read", path = "./broadcast" }, { access = "read", path = "./img" }]
 
 [etherscan]
 mainnet = { key = "${ETHERSCAN_API_KEY}" }

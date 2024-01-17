@@ -74,13 +74,19 @@ contract MoodNft is ERC721, Ownable {
                             '{"name":"',
                             name(),
                             '", "description":"An NFT that reflects the mood of the owner, 100% on Chain!", ',
-                            '"attributes": [{"trait_type": "moodiness", "value": 100}], "image":"',
+                            '"attributes": [{"trait_type": "mood", "value": "',
+                            getMood(tokenId),
+                            '"}], "image":"',
                             imageURI,
                             '"}'
                         )
                     )
                 )
             );
+    }
+
+    function getMood(uint256 tokenId) public view returns (string memory) {
+        return s_tokenIdToState[tokenId] == NFTState.SAD ? "Sad" : "Happy";
     }
 
     function getHappySVG() public view returns (string memory) {
