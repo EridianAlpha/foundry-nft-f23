@@ -1,5 +1,4 @@
 //SPDX-License-Identifier: MIT
-
 pragma solidity ^0.8.18;
 
 import {Script} from "forge-std/Script.sol";
@@ -17,17 +16,10 @@ contract DeployBasicNft is Script {
 }
 
 contract DeployMoodNft is Script {
-    function svgToImageURI(
-        string memory svg
-    ) public pure returns (string memory) {
-        string memory svgBase64Encoded = Base64.encode(
-            bytes(string(abi.encodePacked(svg)))
-        );
+    function svgToImageURI(string memory svg) public pure returns (string memory) {
+        string memory svgBase64Encoded = Base64.encode(bytes(string(abi.encodePacked(svg))));
 
-        return
-            string(
-                abi.encodePacked("data:image/svg+xml;base64,", svgBase64Encoded)
-            );
+        return string(abi.encodePacked("data:image/svg+xml;base64,", svgBase64Encoded));
     }
 
     function run() external returns (MoodNft) {

@@ -1,5 +1,4 @@
 // SPDX-License-Identifier: MIT
-
 pragma solidity ^0.8.18;
 
 import {Test} from "forge-std/Test.sol";
@@ -21,19 +20,13 @@ contract BasicNftTest is Test {
     function test_NameIsCorrect() public {
         string memory expectedName = "Dogie";
         string memory actualName = basicNft.name();
-        assertEq(
-            keccak256(abi.encodePacked(actualName)),
-            keccak256(abi.encodePacked(expectedName))
-        );
+        assertEq(keccak256(abi.encodePacked(actualName)), keccak256(abi.encodePacked(expectedName)));
     }
 
     function test_CanHaveMintAndHaveABalance() public {
         vm.prank(USER);
         basicNft.mintNft(PUG);
         assertEq(basicNft.balanceOf(USER), 1);
-        assertEq(
-            keccak256(abi.encodePacked(PUG)),
-            keccak256(abi.encodePacked(basicNft.tokenURI(0)))
-        );
+        assertEq(keccak256(abi.encodePacked(PUG)), keccak256(abi.encodePacked(basicNft.tokenURI(0))));
     }
 }

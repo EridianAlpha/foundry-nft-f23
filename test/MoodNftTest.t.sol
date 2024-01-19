@@ -1,5 +1,4 @@
 // SPDX-License-Identifier: MIT
-
 pragma solidity ^0.8.18;
 
 import {Test, console} from "forge-std/Test.sol";
@@ -25,15 +24,9 @@ contract MoodNftTest is Test {
     function test_FlipTokenToSad() public {
         vm.startPrank(USER);
         moodNft.mintNft();
-        assertEq(
-            keccak256("Happy"),
-            keccak256(abi.encodePacked(moodNft.getMood(0)))
-        );
+        assertEq(keccak256("Happy"), keccak256(abi.encodePacked(moodNft.getMood(0))));
         moodNft.flipMood(0);
-        assertEq(
-            keccak256("Sad"),
-            keccak256(abi.encodePacked(moodNft.getMood(0)))
-        );
+        assertEq(keccak256("Sad"), keccak256(abi.encodePacked(moodNft.getMood(0))));
 
         vm.stopPrank();
     }
